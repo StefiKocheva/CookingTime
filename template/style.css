@@ -917,6 +917,14 @@ textarea:focus {
       margin-bottom: 10px; }
       .single-blog-area .blog-content .post-title:hover, .single-blog-area .blog-content .post-title:focus {
         color: #40ba37; }
+    .single-blog-area .blog-content .post-options {
+      justify-content: space-between;
+      align-items: flex-end; }
+      .post-options .post-likes {
+        margin: 30px 0px 0px;
+        padding: 0px 15px;
+        color: #40BA37;
+        font-size: 15px; }
     .single-blog-area .blog-content .meta-data {
       font-size: 12px;
       color: #a4a4a4;
