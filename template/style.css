@@ -332,7 +332,6 @@ textarea:focus {
   font-weight: 600;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
-  text-transform: capitalize;
   background-color: #40ba37; }
   .delicious-btn.active, .delicious-btn:hover, .delicious-btn:focus {
     font-size: 16px;
@@ -544,6 +543,7 @@ textarea:focus {
 .hero-area {
   position: relative;
   z-index: 1;
+  margin-bottom: 50px;
   margin-left: 4%;
   margin-right: 4%; }
 
@@ -873,6 +873,9 @@ textarea:focus {
   .blog-sidebar-area {
     margin-top: 80px; } }
 
+.blog-posts-area {
+  margin-top: 50px;}
+
 .single-blog-area {
   position: relative;
   z-index: 1; }
@@ -924,7 +927,17 @@ textarea:focus {
         margin: 30px 0px 0px;
         padding: 0px 15px;
         color: #40BA37;
-        font-size: 15px; }
+        font-size: 18px; }
+        .post-options .post-likes .fa-heart::before {
+          font-size: 18px; }
+      .post-options .post-functions {
+        margin-top: 10px; }
+        .post-options .post-functions .post-function {
+          font-size: 10px; }
+          .post-options .post-functions .post-function .fa-pen-to-square {
+            color: #ffc107; }
+          .post-options .post-functions .post-function .fa-trash {
+            color: #dc3545; }
     .single-blog-area .blog-content .meta-data {
       font-size: 12px;
       color: #a4a4a4;
@@ -1047,8 +1060,12 @@ textarea:focus {
   color: #fbb710;
   padding: 0 3px; }
 
-.row .recipe-options {
-  gap: 20px; }
+.row .receipe-options {
+  gap: 20px;
+  color: #40BA37;
+  font-size: 18px; }
+    .receipe-options .post-likes .fa-heart::before {
+      font-size: 18px; }
 
 .single-preparation-step {
   position: relative;
