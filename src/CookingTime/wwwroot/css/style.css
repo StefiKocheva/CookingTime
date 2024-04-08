@@ -44,6 +44,20 @@ a:focus {
   font-size: 14px;
   color: #474747; }
 
+.logout-btn,
+.logout-btn:hover,
+.logout-btn:focus {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    text-decoration: none;
+    outline: 0 solid transparent;
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+    color: #474747;
+}
+
+
 ul,
 ol {
   margin: 0; }
@@ -1406,6 +1420,43 @@ textarea:focus {
   .delicious-tabs-content .tab-content h6 {
     font-size: 18px; }
 
+
+.delicious-tabs-content {
+  position: relative;
+  z-index: 1; }
+  .delicious-tabs-content .nav-tabs {
+    border-bottom: none;
+    margin-bottom: 50px; }
+    .delicious-tabs-content .nav-tabs .form-inline .nav-link {
+        background-color: #f3f5f8;
+        color: #9b9b9b;
+        border: none;
+        border-left: 3px solid #40ba37;
+        padding: 0 15px;
+        height: 50px;
+        line-height: 50px;
+        margin: 0 2px;
+        border-radius: 0;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+      @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .delicious-tabs-content .nav-tabs .form-inline .nav-link {
+            padding: 0 10px;
+        } }
+      @media only screen and (max-width: 767px) {
+        .delicious-tabs-content .nav-tabs .form-inline .nav-link {
+            padding: 0 10px;
+        } }
+.delicious-tabs-content .nav-tabs .form-inline .nav-link.active {
+    background-color: #40ba37;
+    color: #ffffff;
+    border-left: 3px solid #1c8314;
+}
+  .delicious-tabs-content .tab-content h6 {
+    font-size: 18px; }
+
 /* Features Area */
 .single-feature-area {
   position: relative;
@@ -1415,3 +1466,70 @@ textarea:focus {
     padding-left: 30px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.header-area .delicious-main-menu {
+    position: relative;
+    width: 100%;
+    z-index: 100;
+    height: 145px;
+}
+
+@media only screen and (max-width: 767px) {
+    .header-area .delicious-main-menu {
+        height: 80px;
+    }
+}
+
+.header-area .delicious-main-menu .classy-nav-container {
+    background-color: transparent;
+}
+
+.header-area .delicious-main-menu .classy-navbar {
+    height: 145px;
+    padding: 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .header-area .delicious-main-menu .classy-navbar {
+        height: 80px;
+    }
+}
+
+.header-area .delicious-main-menu .classy-navbar .classynav ul li form .logout-btn {
+    font-weight: 600;
+}
+
+    .header-area .delicious-main-menu .classy-navbar .classynav ul li form .logout-btn:hover, .header-area .delicious-main-menu .classy-navbar .classynav ul li form .logout-btn:focus {
+        font-weight: 600;
+    }
+
+.header-area .delicious-main-menu .classy-navbar .classynav > ul > li > form > .logout-btn {
+    text-transform: uppercase;
+    padding: 12px 18px 11px;
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+    line-height: 1;
+    color: #474747;
+    font-weight: 600;
+}
+
+    .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > form > .logout-btn:hover, .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > form > .logout-btn:focus {
+        font-size: 14px;
+        color: #ffffff;
+        background-color: #40ba37;
+        border-bottom: 3px solid #1c8314;
+    }
+
+        .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > form > .logout-btn:hover::after, .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > form > .logout-btn:focus::after {
+            color: #ffffff;
+        }
+
+.header-area .delicious-main-menu .classy-navbar .classynav > ul > li.active > form > .logout-btn {
+    color: #ffffff;
+    background-color: #40ba37;
+    border-bottom: 3px solid #1c8314;
+}
+
+    .header-area .delicious-main-menu .classy-navbar .classynav > ul > li.active > form > .logout-btn::after {
+        color: #ffffff;
+    }
