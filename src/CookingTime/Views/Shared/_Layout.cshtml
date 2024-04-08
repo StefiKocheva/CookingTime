@@ -1,0 +1,142 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CookingTime.Data.Models
+@inject SignInManager<User> SignInManager
+
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CookingTime</title>
+
+    <link rel="icon" href="~/img/core-img/favicon.ico">
+    <link rel="stylesheet" href="~/css/style.css">
+
+    <script src="https://kit.fontawesome.com/0368fc1ed1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="~/img/core-img/logo.png" alt="">
+    </div>
+
+    <div class="search-wrapper">
+        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post">
+                        <input type="search" name="search" placeholder="Какво искаш да приготвиш...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header-area">
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-between">
+                    <div class="col-12 col-sm-6">
+                        <div class="breaking-news">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <li><a asp-controller="Home" asp-action="Index">Добре дошъл!</a></li>
+                                    <li><a asp-controller="Home" asp-action="Index">Запретвай ръкави...</a></li>
+                                    <li><a asp-controller="Home" asp-action="Index">ВРЕМЕ Е ЗА ГОТВЕНЕ!</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="delicious-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <nav class="classy-navbar justify-content-between" id="deliciousNav">
+                        <a class="nav-brand" asp-controller="Home" asp-action="Index"><img src="~/img/core-img/logo.png" alt="Лого"></a>
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+                        <div class="classy-menu">
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <div class="classynav">
+                                <ul>
+                                    <li><a asp-controller="Home" asp-action="Index">Начало</a></li>
+                                    <li>
+                                        <a href="blog-post.html">Рецепти</a>
+                                        <ul class="dropdown">
+                                            <li><a href="index.html">Супи</a></li>
+                                            <li><a href="about.html">Закуски</a></li>
+                                            <li><a href="blog-post.html">Десерти</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Контакти</a></li>
+                                </ul>
+
+                                <div class="search-btn">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+
+                                <ul class="auth-nav">
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <li class="nav-item">
+                                            <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                            </form>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Влизане</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <footer class="footer-area">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
+                    <p>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="~/js/bootstrap/popper.min.js"></script>
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+    <script src="~/js/plugins/plugins.js"></script>
+    <script src="~/js/active.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+﻿@page
+@model LogoutModel
+
+<header>
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Излез</button>
+            </form>
+        }
+        else
+        {
+            <p>Излязохте успешно.</p>
+        }
+    }
+</header>

@@ -1,0 +1,50 @@
+﻿@page
+@model LoginModel
+
+<div class="contact-area section-padding-80-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading auth-section-heading">
+                    <div class="auth-logo-container">
+                        <img src="img/core-img/logo.png" alt="">
+                    </div>
+                    <div class="cta-content text-center">
+                        <h2>Вход към кулинарния свят</h2>
+                        <p>
+                            Моля попълната формата, за да продължите напред. <br/>
+                            Все още не сте част от нашата готварска общност? <a asp-page="/Account/Register">Присъединете се сега.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form id="account" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="form-elements-container">
+                            <div class="col-12 col-lg-6">
+                                <input asp-for="Input.Email" name="email" id="email" type="email" class="form-control" placeholder="Имейл">
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input asp-for="Input.Password" name="password" id="password" type="password" class="form-control" placeholder="Парола">
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn delicious-btn mt-30" type="submit">Влез</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

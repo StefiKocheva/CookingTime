@@ -1,0 +1,62 @@
+﻿@page
+@model RegisterModel
+
+<div class="contact-area section-padding-80-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading auth-section-heading">
+                    <div class="auth-logo-container">
+                        <img src="~/img/core-img/logo.png" alt="">
+                    </div>
+                    <div class="cta-content text-center">
+                        <h2>Време е за присъединяване</h2>
+                        <p>
+                            Моля попълнете формата с валидни данни, за да създате успешна регистрация. <br />
+                            Вече имате създаден профил? <a asp-page="/Account/Login">Влезте.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form class="form-contact contact_form" method="post" id="registerForm">
+                        <div class="form-elements-container">
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            <div class="col-12 col-lg-6">
+                                <input asp-for="Input.FirstName" name="firstName" id="firstName" type="text" class="form-control" placeholder="Име">
+                                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input asp-for="Input.LastName" name="lastName" id="lastName" type="text" class="form-control" placeholder="Фамилия">
+                                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input asp-for="Input.Email" name="email" id="email" type="email" class="form-control" placeholder="Имейл">
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input asp-for="Input.Password" name="password" id="password" type="password" class="form-control" placeholder="Парола">
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input asp-for="Input.ConfirmPassword" name="confirmPassword" id="confirmPassword" type="password" class="form-control" placeholder="Повтори парола">
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-dark"></span>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn delicious-btn mt-30" type="submit">Регистрирай се</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
