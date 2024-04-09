@@ -1,6 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using CookingTime.Data.Models
-@inject SignInManager<User> SignInManager
 
 <!DOCTYPE html>
 <html lang="bg">
@@ -72,15 +70,11 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a asp-controller="Home" asp-action="Index">Начало</a></li>
-                                    <li>
-                                        <a href="blog-post.html">Рецепти</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Супи</a></li>
-                                            <li><a href="about.html">Закуски</a></li>
-                                            <li><a href="blog-post.html">Десерти</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Контакти</a></li>
+                                    <li><a href="blog-post.html">Рецепти</a></li>
+                                    @if (this.User.Identity?.IsAuthenticated ?? false)
+                                    {
+                                        <li><a asp-controller="Recipes" asp-action="Add">Добави рецепта</a></li>
+                                    }
                                 </ul>
 
                                 <div class="search-btn">
@@ -88,10 +82,15 @@
                                 </div>
 
                                 <ul class="auth-nav">
-                                    @if (SignInManager.IsSignedIn(User))
+                                    @if (this.User.Identity.IsAuthenticated)
                                     {
                                         <li class="nav-item">
-                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Профил</a>
+                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Администрация</a>
+                                            <ul class="dropdown">
+                                                <li><a href="index.html">Профил</a></li>
+                                                <li><a href="about.html">Закуски</a></li>
+                                                <li><a href="blog-post.html">Десерти</a></li>
+                                            </ul>
                                         </li>
                                         <li class="nav-item">
                                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -118,14 +117,17 @@
     </header>
 
     @RenderBody()
-
+    
     <footer class="footer-area">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="footer-logo">
+                        <a asp-controller="Home" asp-action="Index"><img src="~/img/core-img/logo.png" alt="Logo"></a>
+                    </div>
                     <p>
                         Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </p>
+
                 </div>
             </div>
         </div>

@@ -56,7 +56,7 @@ public class LoginModel : PageModel
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            ModelState.AddModelError(string.Empty, "Грешен имейл или парола.");
             return Page();
         }
 

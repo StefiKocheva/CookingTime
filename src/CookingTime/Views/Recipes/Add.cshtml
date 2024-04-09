@@ -1,0 +1,60 @@
+﻿@model CookingTime.Models.Recipes.CreateRecipeInputModel
+
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb4.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcumb-text text-center">
+                    <h2>Създаване на рецепта</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-information-area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form method="post" asp-action="Create" enctype="multipart/form-data">
+                        <div class="form-elements-container">
+                            <div class="col-12 col-lg-10">
+                                <select class="form-control" asp-for="Type" name="type" id="type" placeholder="Категория">
+                                    <option value="1">Салата</option>
+                                    <option value="2">Предястие</option>
+                                    <option value="3">Основно</option>
+                                    <option value="4">Десерт</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <input type="text" asp-for="Title" class="form-control" id="title" placeholder="Заглавие">
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <textarea asp-for="ShortDescription" class="form-control" style="height: 100px;" placeholder="Описание"></textarea>
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <input type="file" asp-for="Image" class="form-control" id="image" placeholder="Изображение" min="0">
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <input type="number" asp-for="PreparationTime" class="form-control" id="preparationTime" placeholder="Време за приготвяне (в часове)" step="0.1" min="0">
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <input type="number" asp-for="Portions" class="form-control" id="portions" placeholder="Брой порции" step="0.1" min="0">
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <textarea asp-for="Ingredients" class="form-control" id="ingredients" placeholder="Съставки (разделени със запетая)"></textarea>
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <textarea asp-for="Content" class="form-control" style="height: 500px;" placeholder="Начин на приготвяне"></textarea>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn delicious-btn mt-30" type="submit">Създай</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

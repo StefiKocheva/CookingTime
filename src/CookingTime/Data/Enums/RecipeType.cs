@@ -6,6 +6,5 @@ public enum RecipeType
     Starter = 1,
     Salad = 2,
     MainDish = 3,
-    Dessert = 4,
-    Beverages = 5
+    Dessert = 4
 }
