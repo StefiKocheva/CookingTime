@@ -1,4 +1,6 @@
-﻿<section class="hero-area">
+﻿@model IndexOutputModel
+
+<section class="hero-area">
     <div class="hero-slides owl-carousel">
         <div class="single-hero-slide bg-img" style="background-image: url(../img/bg-img/bg1.jpg);">
             <div class="container h-100">
@@ -7,7 +9,7 @@
                         <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                             <h2 data-animation="fadeInUp" data-delay="300ms">Кулинарни пътешествия!</h2>
                             <p data-animation="fadeInUp" data-delay="700ms">Направи кулинарно пътешествие с нашето разнообразие от вдъхновяващи рецепти за всяко настроение и вкус.</p>
-                            <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Виж всички</a>
+                            <a asp-controller="Recipes" asp-action="All" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Виж всички</a>
                         </div>
                     </div>
                 </div>
@@ -21,7 +23,7 @@
                         <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                             <h2 data-animation="fadeInUp" data-delay="300ms">Вкусове от целия свят!</h2>
                             <p data-animation="fadeInUp" data-delay="700ms">Открий вкусове от цял ​​свят с нашето приложение за рецепти и кулинарни идеи.</p>
-                            <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Виж всички</a>
+                            <a asp-controller="Recipes" asp-action="All" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Виж всички</a>
                         </div>
                     </div>
                 </div>
@@ -35,7 +37,7 @@
                         <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                             <h2 data-animation="fadeInUp" data-delay="300ms">Изследвай кулинарния свят!</h2>
                             <p data-animation="fadeInUp" data-delay="700ms">Изследвай света на кулинарията с нашето разнообразие на рецепти!</p>
-                            <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Виж всички</a>
+                            <a asp-controller="Recipes" asp-action="All" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Виж всички</a>
                         </div>
                     </div>
                 </div>
@@ -49,32 +51,32 @@
         <div class="row align-items-center mt-70">
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="img/core-img/salad.png" alt="">
-                    <h3><span class="counter">1287</span></h3>
+                    <img src="~/img/core-img/salad.png" alt="">
+                    <h3><span class="counter">@Model.TotalSalads</span></h3>
                     <h6>Салати</h6>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="img/core-img/hamburger.png" alt="">
-                    <h3><span class="counter">25</span></h3>
+                    <img src="~/img/core-img/hamburger.png" alt="">
+                    <h3><span class="counter">@Model.TotalStarters</span></h3>
                     <h6>Предястия</h6>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="img/core-img/rib.png" alt="">
-                    <h3><span class="counter">471</span></h3>
+                    <img src="~/img/core-img/rib.png" alt="">
+                    <h3><span class="counter">@Model.TotalMainDishes</span></h3>
                     <h6>Основни</h6>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="img/core-img/pancake.png" alt="">
-                    <h3><span class="counter">326</span></h3>
+                    <img src="~/img/core-img/pancake.png" alt="">
+                    <h3><span class="counter">@Model.TotalDesserts</span></h3>
                     <h6>Десерти</h6>
                 </div>
             </div>
@@ -93,19 +95,22 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-best-receipe-area mb-30">
-                    <img src="~/img/bg-img/r1.jpg" alt="">
-                    <div class="receipe-content">
-                        <a href="receipe-post.html">
-                            <h5>Sushi Easy Receipy</h5>
-                        </a>
-                        <div class="post-options">
-                            <span class="post-likes"><i class="fa-solid fa-heart"></i> 25</span>
+            @foreach (var recipe in Model.LastThree)
+            {
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="@recipe.ImageUrl" alt="Снимка на рецептата">
+                        <div class="receipe-content">
+                            <a href="receipe-post.html">
+                                <h5>@recipe.Title</h5>
+                            </a>
+                            <div class="post-options">
+                                <span class="post-likes"><i class="fa-solid fa-heart"></i> 25</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -116,14 +121,13 @@
             <div class="col-12">
                 <div class="cta-content text-center">
                     <h2>Започни кулинарното си пътешествие сега!</h2>
-                    <a href="#" class="btn delicious-btn">Виж всички рецепти</a>
+                    <a asp-controller="Recipes" asp-action="All" class="btn delicious-btn">Виж всички рецепти</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ##### Contact Information Area Start ##### -->
 <div class="contact-information-area section-padding-80">
     <div class="container">
         <div class="row">

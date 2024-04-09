@@ -24,8 +24,9 @@ public class RecipesController : Controller
     [HttpGet]
     public IActionResult All()
     {
-        var recipies = "";
-        return View();
+        var recipes = this.GetRecipes();
+
+        return View(recipes);
     }
 
     [HttpGet]
@@ -66,4 +67,22 @@ public class RecipesController : Controller
 
         return RedirectToAction("All");
     }
+
+    private IEnumerable<RecipeDetailsOutputModel> GetRecipes()
+        => this.data.Recipes
+            .Select(r => new RecipeDetailsOutputModel()
+            {
+                Id = r.Id,
+                Title = r.Title,
+                ShortDescription = r.ShortDescription,
+                Content = r.Content,
+                Ingredients = r.Ingredients,
+                Portions = r.Portions,
+                PreparationTime = r.PreparationTime,
+                Type = r.Type,
+                CreatedOn = r.CreatedOn,
+                ImageUrl = r.ImageUrl,
+                UserId = r.UserId
+            })
+            .ToList();
 }

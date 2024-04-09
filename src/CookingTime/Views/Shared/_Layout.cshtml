@@ -70,10 +70,23 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a asp-controller="Home" asp-action="Index">Начало</a></li>
-                                    <li><a href="blog-post.html">Рецепти</a></li>
-                                    @if (this.User.Identity?.IsAuthenticated ?? false)
+                                    @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole("Administrator"))
                                     {
+                                        <li><a asp-controller="Recipes" asp-action="All">Рецепти</a></li>
                                         <li><a asp-controller="Recipes" asp-action="Add">Добави рецепта</a></li>
+                                    }
+                                    
+                                    @if (this.User.IsInRole("Administrator"))
+                                    {
+                                    <li class="nav-item">
+                                        <a>Администрация </a>
+                                        <ul class="dropdown w-100">
+                                                <li><a asp-controller="Recipes" asp-action="Add">Добави рецепта</a></li>
+                                                <li><a asp-controller="Recipes" asp-action="All">Рецепти</a></li>
+                                            <li><a href="index.html">Добави потребител</a></li>
+                                            <li><a href="about.html">Потребители</a></li>
+                                        </ul>
+                                    </li>
                                     }
                                 </ul>
 
@@ -82,16 +95,10 @@
                                 </div>
 
                                 <ul class="auth-nav">
-                                    @if (this.User.Identity.IsAuthenticated)
+                                    @if (this.User.Identity?.IsAuthenticated ?? false)
                                     {
-                                        <li class="nav-item">
-                                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Администрация</a>
-                                            <ul class="dropdown">
-                                                <li><a href="index.html">Профил</a></li>
-                                                <li><a href="about.html">Закуски</a></li>
-                                                <li><a href="blog-post.html">Десерти</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class="nav-item"><a href="index.html">Профил</a></li>
+
                                         <li class="nav-item">
                                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                                                 <button type="submit" class="nav-link btn logout-btn">Излез</button>
