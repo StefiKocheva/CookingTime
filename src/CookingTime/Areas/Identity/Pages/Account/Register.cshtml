@@ -23,28 +23,28 @@
         <div class="row">
             <div class="col-12">
                 <div class="contact-form-area">
-                    <form class="form-contact contact_form" method="post" id="registerForm">
+                    <form class="form-contact contact_form" method="post">
                         <div class="form-elements-container">
                             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                             <div class="col-12 col-lg-6">
-                                <input asp-for="Input.FirstName" name="firstName" id="firstName" type="text" class="form-control" placeholder="Име">
+                                <input asp-for="Input.FirstName" type="text" class="form-control" placeholder="Име" aria-required="true">
                                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                             </div>
                             <div class="col-12 col-lg-6">
-                                <input asp-for="Input.LastName" name="lastName" id="lastName" type="text" class="form-control" placeholder="Фамилия">
+                                <input asp-for="Input.LastName" type="text" class="form-control" placeholder="Фамилия" aria-required="true">
                                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
                             </div>
                             <div class="col-12 col-lg-6">
-                                <input asp-for="Input.Email" name="email" id="email" type="email" class="form-control" placeholder="Имейл">
+                                <input asp-for="Input.Email" type="email" class="form-control" placeholder="Имейл" aria-required="true">
                                 <span asp-validation-for="Input.Email" class="text-danger"></span>
                             </div>
                             <div class="col-12 col-lg-6">
-                                <input asp-for="Input.Password" name="password" id="password" type="password" class="form-control" placeholder="Парола">
+                                <input asp-for="Input.Password" type="password" class="form-control" placeholder="Парола" aria-required="true">
                                 <span asp-validation-for="Input.Password" class="text-danger"></span>
                             </div>
                             <div class="col-12 col-lg-6">
-                                <input asp-for="Input.ConfirmPassword" name="confirmPassword" id="confirmPassword" type="password" class="form-control" placeholder="Повтори парола">
-                                <span asp-validation-for="Input.ConfirmPassword" class="text-dark"></span>
+                                <input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Повтори парола" aria-required="true">
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                             </div>
                             <div class="col-12 text-center">
                                 <button class="btn delicious-btn mt-30" type="submit">Регистрирай се</button>

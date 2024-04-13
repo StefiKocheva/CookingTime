@@ -1,0 +1,62 @@
+﻿@model CookingTime.Models.Users.UserDetailsOutputModel
+
+<div class="contact-information-area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-2">
+                <img alt="" style="height: 150px; margin-bottom: 20px" src="@Model.ImageUrl">
+            </div>
+            <div class="col-12 col-lg-10">
+                <div class="contact-form-area">
+                    <form asp-action="Update" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <input type="text" class="form-control" asp-for="FirstName" placeholder="Име">
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <input type="text" class="form-control" asp-for="LastName" placeholder="Фамилия">
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <input type="email" class="form-control" asp-for="Email" placeholder="E-mail">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" asp-for="Bio" cols="30" rows="10" placeholder="Био"></textarea>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="button" class="btn delicious-btn mt-30" data-toggle="modal" data-target="#exampleModal">
+                                    Промяна на снимка
+                                </button>
+                                <button class="btn delicious-btn mt-30" type="submit">Запази</button>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="exampleModalLabel">Промяна на снимка</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Затвори">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="contact-form-area">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <input type="file" class="form-control" asp-for="Image" placeholder="Снимка">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn delicious-btn btn-sm m-1" data-dismiss="modal">Затвори</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

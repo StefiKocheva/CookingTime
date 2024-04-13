@@ -1,6 +1,6 @@
 namespace CookingTime.Controllers;
 
-using CookingTime.Models.Recipes;
+using Models.Recipes;
 using Data;
 using Data.Enums;
 using Microsoft.AspNetCore.Mvc;
@@ -36,10 +36,11 @@ public class HomeController : Controller
                     Type = r.Type,
                     CreatedOn = r.CreatedOn,
                     ImageUrl = r.ImageUrl,
-                    UserId = r.UserId
+                    UserId = r.UserId,
+                    LikesCount = this.data.Favorites.Count(f => f.RecipeId == r.Id)
                 })
                 .OrderByDescending(r => r.CreatedOn)
-                .Take(4)
+                .Take(3)
                 .ToList()
         };
 

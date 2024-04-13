@@ -1,7 +1,8 @@
 ﻿namespace CookingTime.Models.Recipes;
 
-using CookingTime.Data.Enums;
-using CookingTime.Data.Models;
+using Data.Enums;
+using System.ComponentModel.DataAnnotations;
+using Users;
 
 public class RecipeDetailsOutputModel
 {
@@ -13,11 +14,15 @@ public class RecipeDetailsOutputModel
 
     public RecipeType Type { get; set; }
 
+    public int? TypeInt { get; set; }
+
     public string ShortDescription { get; set; }
 
     public string Content { get; set; }
 
     public string ImageUrl { get; set; }
+
+    public IFormFile? Image { get; set; }
 
     public double PreparationTime { get; set; }
 
@@ -27,9 +32,16 @@ public class RecipeDetailsOutputModel
 
     public string UserId { get; set; }
 
-    public User User { get; set; }
+    public UserDetailsOutputModel User { get; set; }
 
-    public List<Comment> Comments { get; set; }
+    public int LikesCount { get; set; }
 
-    public List<Favorite> Favorites { get; set; }
+    public bool IsFavorite { get; set; }
+
+    [Required(ErrorMessage = "Полето е задължително.")]
+    [MinLength(2, ErrorMessage = "Въведете поне 2 символа.")]
+    [MaxLength(200, ErrorMessage = "Въведете не повече от 200 символа.")]
+    public string? CommentContent { get; set; }
+
+    public List<CommentOutputModel> Comments { get; set; }
 }

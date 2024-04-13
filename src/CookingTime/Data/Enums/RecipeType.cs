@@ -3,8 +3,8 @@
 public enum RecipeType
 {
     None = 0,
-    Starter = 1,
-    Salad = 2,
+    Salad = 1,
+    Starter = 2,
     MainDish = 3,
     Dessert = 4
 }

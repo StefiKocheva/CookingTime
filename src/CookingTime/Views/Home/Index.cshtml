@@ -2,7 +2,7 @@
 
 <section class="hero-area">
     <div class="hero-slides owl-carousel">
-        <div class="single-hero-slide bg-img" style="background-image: url(../img/bg-img/bg1.jpg);">
+        <div class="single-hero-slide bg-img" style="background-image: url(../img/static/slider/bg1.jpg);">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="single-hero-slide bg-img" style="background-image: url(../img/bg-img/bg6.jpg);">
+        <div class="single-hero-slide bg-img" style="background-image: url(../img/static/slider/bg2.jpg);">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="single-hero-slide bg-img" style="background-image: url(../img/bg-img/bg7.jpg);">
+        <div class="single-hero-slide bg-img" style="background-image: url(../img/static/slider/bg3.jpg);">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -51,7 +51,7 @@
         <div class="row align-items-center mt-70">
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="~/img/core-img/salad.png" alt="">
+                    <img src="~/img/static/counters/salad.png" alt="">
                     <h3><span class="counter">@Model.TotalSalads</span></h3>
                     <h6>Салати</h6>
                 </div>
@@ -59,7 +59,7 @@
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="~/img/core-img/hamburger.png" alt="">
+                    <img src="~/img/static/counters/hamburger.png" alt="">
                     <h3><span class="counter">@Model.TotalStarters</span></h3>
                     <h6>Предястия</h6>
                 </div>
@@ -67,7 +67,7 @@
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="~/img/core-img/rib.png" alt="">
+                    <img src="~/img/static/counters/rib.png" alt="">
                     <h3><span class="counter">@Model.TotalMainDishes</span></h3>
                     <h6>Основни</h6>
                 </div>
@@ -75,7 +75,7 @@
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-cool-fact">
-                    <img src="~/img/core-img/pancake.png" alt="">
+                    <img src="~/img/static/counters/pancake.png" alt="">
                     <h3><span class="counter">@Model.TotalDesserts</span></h3>
                     <h6>Десерти</h6>
                 </div>
@@ -101,11 +101,11 @@
                     <div class="single-best-receipe-area mb-30">
                         <img src="@recipe.ImageUrl" alt="Снимка на рецептата">
                         <div class="receipe-content">
-                            <a href="receipe-post.html">
+                            <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">
                                 <h5>@recipe.Title</h5>
                             </a>
                             <div class="post-options">
-                                <span class="post-likes"><i class="fa-solid fa-heart"></i> 25</span>
+                                <span class="post-likes"><i class="fa-solid fa-heart"></i> @recipe.LikesCount</span>
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
     </div>
 </section>
 
-<section class="cta-area bg-img bg-overlay" style="background-image: url(../img/bg-img/bg4.jpg);">
+<section class="cta-area bg-img bg-overlay" style="background-image: url(../img/static/parallax.jpg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
@@ -162,3 +162,7 @@
 <div class="map-area">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2956.2241144413147!2d24.326558175798308!3d42.18827537120936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14aca55433b558db%3A0x4aac64eb695300eb!2sPazardzhik%20Center%2C%20ul.%20%22San%20Stefano%22%201%2C%204400%20Pazardzhik!5e0!3m2!1sen!2sbg!4v1710466184581!5m2!1sen!2sbg" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,11 +1,11 @@
-﻿@model IEnumerable<CookingTime.Models.Recipes.RecipeDetailsOutputModel>
+﻿@model CookingTime.Models.Recipes.RecipesListingOutputModel
 
-<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb2.jpg);">
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/static/breadcrumbs/breadcrumb2.jpg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcumb-text text-center">
-                    <h2>Всички рецепти</h2>
+                    <h2>@Model.ListName</h2>
                 </div>
             </div>
         </div>
@@ -17,31 +17,54 @@
         <div class="row">
             <div class="col-12 col-lg-8">
                 <div class="blog-posts-area">
-                    @foreach (var recipe in Model)
+                    @foreach (var recipe in Model.Recipes)
                     {
                         <div class="single-blog-area mb-80">
                             <div class="blog-thumbnail">
-                                <img src="@recipe.ImageUrl" alt="">
-                                <!-- Post Date -->
+                                <img src="@recipe.ImageUrl" alt="Снимка на рецепта">
                                 <div class="post-date">
-                                    <a href="#"><span>@recipe.CreatedOn.Day </span>@recipe.CreatedOn.Month <br> @recipe.CreatedOn.Year</a>
+                                    @{
+                                        var month = recipe.CreatedOn.Month switch
+                                        {
+                                            1 => "Януари",
+                                            2 => "Февруари",
+                                            3 => "Март",
+                                            4 => "Април",
+                                            5 => "Май",
+                                            6 => "Юни",
+                                            7 => "Юли",
+                                            8 => "Август",
+                                            9 => "Септември",
+                                            10 => "Октомври",
+                                            11 => "Ноември",
+                                            12 => "Декември",
+                                            _ => ""
+                                            };
+                                    }
+
+                                    <a href="#"><span>@recipe.CreatedOn.Day </span>@month <br> @recipe.CreatedOn.Year</a>
                                 </div>
                             </div>
-                            <!-- Content -->
                             <div class="blog-content">
-                                <a href="#" class="post-title">How to find amazing restaurants in your city</a>
+                                <a asp-action="Details" asp-route-id="@recipe.Id" class="post-title">@recipe.Title</a>
                                 <div class="meta-data">
-                                    by <a href="#">Maria Williams</a> in <a href="#">Restaurants</a>
+                                    качено от @recipe.User.FirstName @recipe.User.LastName
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+                                <p>@recipe.ShortDescription</p>
                                 <div class="row post-options">
-                                    <div>
-                                        <a href="#" class="btn delicious-btn btn-4 mt-30">Виж детайли</a>
-                                        <a href="#" class="btn delicious-btn mt-30">Редактирай</a>
-                                        <a href="#" class="btn delicious-btn btn-3 mt-30">Изтрий</a>
+                                    <div class="d-flex">
+                                        <a asp-action="Details" asp-route-id="@recipe.Id" class="btn delicious-btn btn-4 mr-15">Виж детайли</a>
+                                        @if (this.User.IsInRole("Administrator"))
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn delicious-btn mr-15">Редактирай</a>
+                                            
+                                            <form method="post" asp-action="Delete" asp-route-id="@recipe.Id">
+                                                <button type="submit" class="btn delicious-btn btn-3 mr-15"> Изтрий</button>
+                                            </form>
+                                        }
                                     </div>
 
-                                    <span class="post-likes"><i class="fa-solid fa-heart"></i> 25</span>
+                                    <span class="post-likes"><i class="fa-solid fa-heart"></i> @recipe.LikesCount</span>
                                 </div>
                             </div>
                         </div>
@@ -52,19 +75,17 @@
             <div class="col-12 col-lg-4">
                 <div class="blog-sidebar-area">
 
-                    <!-- Widget -->
                     <div class="single-widget mb-80">
                         <h6>Категории</h6>
                         <ul class="list">
-                            <li><a href="#">Всички</a></li>
-                            <li><a href="#">Салати</a></li>
-                            <li><a href="#">Предястия</a></li>
-                            <li><a href="#">Основни</a></li>
-                            <li><a href="#">Десерти</a></li>
+                            <li><a asp-action="All">Всички</a></li>
+                            <li><a asp-action="Salads">Салати</a></li>
+                            <li><a asp-action="Starters">Предястия</a></li>
+                            <li><a asp-action="MainDishes">Основни</a></li>
+                            <li><a asp-action="Desserts">Десерти</a></li>
                         </ul>
                     </div>
 
-                    <!-- Widget -->
                     <div class="single-widget mb-80">
                         <div class="quote-area text-center">
                             <span>"</span>
@@ -79,4 +100,3 @@
         </div>
     </div>
 </div>
-<!-- ##### Blog Area End ##### -->

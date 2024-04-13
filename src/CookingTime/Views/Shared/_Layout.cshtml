@@ -1,4 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.Security.Claims
+@{
+    var query = "";
+}
 
 <!DOCTYPE html>
 <html lang="bg">
@@ -9,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CookingTime</title>
 
-    <link rel="icon" href="~/img/core-img/favicon.ico">
+    <link rel="icon" href="~/img/static/logo/favicon.ico">
     <link rel="stylesheet" href="~/css/style.css">
 
     <script src="https://kit.fontawesome.com/0368fc1ed1.js" crossorigin="anonymous"></script>
@@ -18,7 +21,7 @@
 <body>
     <div id="preloader">
         <i class="circle-preloader"></i>
-        <img src="~/img/core-img/logo.png" alt="">
+        <img src="~/img/static/logo/logo.png" alt="">
     </div>
 
     <div class="search-wrapper">
@@ -27,8 +30,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#" method="post">
-                        <input type="search" name="search" placeholder="Какво искаш да приготвиш...">
+                    <form method="get" asp-controller="Recipes" asp-action="Search" asp-route-id="@query">
+                        <input type="search" name="query" id="query" placeholder="Какво искаш да приготвиш..." value="@query">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
@@ -59,7 +62,7 @@
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
                     <nav class="classy-navbar justify-content-between" id="deliciousNav">
-                        <a class="nav-brand" asp-controller="Home" asp-action="Index"><img src="~/img/core-img/logo.png" alt="Лого"></a>
+                        <a class="nav-brand" asp-controller="Home" asp-action="Index"><img src="~/img/static/logo/logo.png" alt="Лого"></a>
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
                         </div>
@@ -70,23 +73,27 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a asp-controller="Home" asp-action="Index">Начало</a></li>
-                                    @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole("Administrator"))
+                                    @if (!this.User.IsInRole("Administrator"))
                                     {
                                         <li><a asp-controller="Recipes" asp-action="All">Рецепти</a></li>
+                                    }
+                                    
+                                    @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole("Administrator"))
+                                    {
                                         <li><a asp-controller="Recipes" asp-action="Add">Добави рецепта</a></li>
                                     }
                                     
                                     @if (this.User.IsInRole("Administrator"))
                                     {
-                                    <li class="nav-item">
-                                        <a>Администрация </a>
-                                        <ul class="dropdown w-100">
-                                                <li><a asp-controller="Recipes" asp-action="Add">Добави рецепта</a></li>
-                                                <li><a asp-controller="Recipes" asp-action="All">Рецепти</a></li>
-                                            <li><a href="index.html">Добави потребител</a></li>
-                                            <li><a href="about.html">Потребители</a></li>
-                                        </ul>
-                                    </li>
+                                        <li class="nav-item">
+                                            <a>Администрация </a>
+                                            <ul class="dropdown w-100">
+                                                    <li><a asp-controller="Recipes" asp-action="Add">Добави рецепта</a></li>
+                                                    <li><a asp-controller="Recipes" asp-action="All">Рецепти</a></li>
+                                                <li><a asp-controller="Users" asp-action="Add">Добави потребител</a></li>
+                                                <li><a asp-controller="Users" asp-action="All">Потребители</a></li>
+                                            </ul>
+                                        </li>
                                     }
                                 </ul>
 
@@ -97,7 +104,7 @@
                                 <ul class="auth-nav">
                                     @if (this.User.Identity?.IsAuthenticated ?? false)
                                     {
-                                        <li class="nav-item"><a href="index.html">Профил</a></li>
+                                        <li class="nav-item"><a asp-controller="Users" asp-action="Details" asp-route-id="@this.User.FindFirst(ClaimTypes.NameIdentifier).Value">Профил</a></li>
 
                                         <li class="nav-item">
                                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -130,7 +137,7 @@
             <div class="row h-100">
                 <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
                     <div class="footer-logo">
-                        <a asp-controller="Home" asp-action="Index"><img src="~/img/core-img/logo.png" alt="Logo"></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="~/img/static/logo/logo.png" alt="Logo"></a>
                     </div>
                     <p>
                         Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -146,6 +153,6 @@
     <script src="~/js/plugins/plugins.js"></script>
     <script src="~/js/active.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-</body>
 
+</body>
 </html>

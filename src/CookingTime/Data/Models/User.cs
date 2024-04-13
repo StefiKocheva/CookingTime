@@ -10,7 +10,7 @@ public class User : IdentityUser
 
     public string? Bio { get; set; }
 
-    public string ImageUrl { get; set; } = "https://res.cloudinary.com/dduhwzpfw/image/upload/v1672849735/avatar.png";
+    public string ImageUrl { get; set; } = @"\img\uploads\profiles\default-image.jpg";
 
     public List<Recipe> Recipes { get; set; } = new();
 

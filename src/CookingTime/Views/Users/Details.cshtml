@@ -1,0 +1,45 @@
+﻿@model CookingTime.Models.Users.UserDetailsOutputModel
+
+<div class="contact-information-area section-padding-80-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-2">
+                <img alt="" style="height: 150px; margin-bottom: 20px" src="@Model.ImageUrl">
+            </div>
+            <div class="col-12 col-lg-10">
+                <div class="receipe-ratings">
+                    <h3>@Model.FirstName @Model.LastName</h3>
+                    <a asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a>
+                </div>
+                <div class="contact-text">
+                    <p>@Model.Bio</p>
+                </div>
+            </div>
+
+            <section class="top-catagory-area section-padding-80-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="single-top-catagory">
+                                <img src="~/img/static/profile/bg2.jpg" alt="">
+                                <div class="top-cta-content">
+                                    <h3>Мои рецепти</h3>
+                                    <a asp-controller="Recipes" asp-action="Mine" class="btn delicious-btn">Разгледай</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="single-top-catagory">
+                                <img src="~/img/static/profile/bg1.jpg" alt="">
+                                <div class="top-cta-content">
+                                    <h3>Харесани рецепти</h3>
+                                    <a asp-controller="Recipes" asp-action="Favorites" class="btn delicious-btn">Разгледай</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

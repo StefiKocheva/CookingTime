@@ -24,11 +24,11 @@ public class LoginModel : PageModel
 
     public class InputModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Полето е задължително.")]
+        [EmailAddress(ErrorMessage = "Въведете валиден имейл адрес.")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

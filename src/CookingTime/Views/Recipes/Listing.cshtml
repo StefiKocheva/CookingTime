@@ -1,0 +1,42 @@
+﻿@using System.Security.Claims
+@model CookingTime.Models.Recipes.RecipesListingOutputModel
+
+<section class="best-receipe-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h3>@Model.ListName</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        @foreach (var recipe in Model.Recipes)
+        {
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-best-receipe-area mb-30">
+                    <img src="@recipe.ImageUrl" alt="Снимка на рецепта">
+                    <div class="receipe-content">
+                        <a asp-action="Details" asp-route-id="@recipe.Id">
+                            <h5>@recipe.Title</h5>
+                        </a>
+                        <div class="post-options">
+                            <span class="post-likes"><i class="fa-solid fa-heart"></i> @recipe.LikesCount</span>
+                            <div class="post-functions d-flex">
+                                @if (recipe.UserId == this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
+                                {
+                                    <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn delicious-btn btn-4 m-1 post-function"><i class="fa-solid fa-pen-to-square"></i> Редактирай</a>
+                                    
+                                    <form method="post" asp-action="Delete" asp-route-id="@recipe.Id">
+                                            <button type="submit" class="btn delicious-btn btn-4 m-1 post-function"><i class="fa-solid fa-trash"></i> Изтрий</button>
+                                    </form>
+                                }
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+</section>

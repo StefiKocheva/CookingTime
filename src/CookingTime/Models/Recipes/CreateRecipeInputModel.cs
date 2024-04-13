@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations;
 public class CreateRecipeInputModel
 {
     [Required(ErrorMessage = "Полето е задължително.")]
-    [Length(2, 50, ErrorMessage = "Въведете между 2 и 50 символа.")]
+    [MinLength(2, ErrorMessage = "Въведете поне 2 символа.")]
+    [MaxLength(50, ErrorMessage = "Въведете не повече от 50 символа.")]
     public string Title { get; set; }
 
     [Required(ErrorMessage = "Полето е задължително.")]
@@ -13,7 +14,8 @@ public class CreateRecipeInputModel
     public int Type { get; set; }
 
     [Required(ErrorMessage = "Полето е задължително.")]
-    [Length(2, 50, ErrorMessage = "Въведете между 2 и 50 символа.")]
+    [MinLength(2, ErrorMessage = "Въведете поне 2 символа.")]
+    [MaxLength(50, ErrorMessage = "Въведете не повече от 50 символа.")]
     public string ShortDescription { get; set; }
 
     [Required(ErrorMessage = "Полето е задължително.")]
@@ -32,6 +34,7 @@ public class CreateRecipeInputModel
     public double Portions { get; set; }
 
     [Required(ErrorMessage = "Полето е задължително.")]
-    [Length(2, 200, ErrorMessage = "Въведете между 2 и 200 символа.")]
+    [MinLength(2, ErrorMessage = "Въведете поне 2 символа.")]
+    [MaxLength(200, ErrorMessage = "Въведете не повече от 200 символа.")]
     public string Ingredients { get; set; }
 }

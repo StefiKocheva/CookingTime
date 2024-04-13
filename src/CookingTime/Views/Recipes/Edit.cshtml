@@ -1,11 +1,11 @@
-﻿@model CookingTime.Models.Recipes.CreateRecipeInputModel
+﻿@model CookingTime.Models.Recipes.RecipeDetailsOutputModel
 
 <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/static/breadcrumbs/breadcrumb1.jpg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcumb-text text-center">
-                    <h2>Създаване на рецепта</h2>
+                    <h2>Редактиране на рецепта</h2>
                 </div>
             </div>
         </div>
@@ -17,17 +17,17 @@
         <div class="row">
             <div class="col-12">
                 <div class="contact-form-area">
-                    <form method="post" asp-action="Create" enctype="multipart/form-data">
+                    <form method="post" asp-action="Update" asp-route-id="@Model.Id" enctype="multipart/form-data">
                         <div class="form-elements-container">
                             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                             <div class="col-12 col-lg-10">
-                                <select class="form-control" asp-for="Type" placeholder="Категория">
+                                <select class="form-control" asp-for="TypeInt" placeholder="Категория">
                                     <option value="1">Салата</option>
                                     <option value="2">Предястие</option>
                                     <option value="3">Основно</option>
                                     <option value="4">Десерт</option>
                                 </select>
-                                <span asp-validation-for="Type" class="text-danger"></span>
+                                <span asp-validation-for="TypeInt" class="text-danger"></span>
                             </div>
                             <div class="col-12 col-lg-10">
                                 <input type="text" asp-for="Title" class="form-control" placeholder="Заглавие">
@@ -58,7 +58,7 @@
                                 <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
                             <div class="col-12 text-center">
-                                <button class="btn delicious-btn mt-30" type="submit">Създай</button>
+                                <button class="btn delicious-btn mt-30" type="submit">Обнови</button>
                             </div>
                         </div>
                     </form>
