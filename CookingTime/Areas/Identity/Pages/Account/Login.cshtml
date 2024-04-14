@@ -7,13 +7,13 @@
             <div class="col-12">
                 <div class="section-heading auth-section-heading">
                     <div class="auth-logo-container">
-                        <a asp-controller="Home" asp-action="Index"><img src="~/img/core-img/logo.png" alt="Logo"></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="~/img/static/logo/logo.png" alt="Logo"></a>
                     </div>
                     <div class="cta-content text-center">
                         <h2>Вход към кулинарния свят</h2>
                         <p>
-                            Моля попълната формата, за да продължите напред. <br/>
-                            Все още не сте част от нашата готварска общност? <a asp-page="/Account/Register">Присъединете се сега.</a>
+                            Моля попълни формата, за да продължиш напред. <br />
+                            Все още не си част от нашата готварска общност? <a asp-page="/Account/Register">Присъедини се сега.</a>
                         </p>
                     </div>
                 </div>
@@ -44,3 +44,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
